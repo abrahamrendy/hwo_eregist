@@ -90,7 +90,7 @@ class IndexController extends Controller
                                                 <h1 style="word-break: break-word;color: #fff !important">No.urut: '.$id.'</h1> 
                                                 <h1 style="word-break: break-word;color: #fff !important">Terima Kasih, '.$name.'</h1>
                                                 <h3 style="word-break: break-word; font-weight: normal;color: #fff !important">Anda telah terdaftar untuk mengikuti ibadah onsite.</h3>
-                                                <h1 style="word-break: break-word;color: #fff !important">GBI Sukawarna '.$data->name.'</h1> 
+                                                <h1 style="word-break: break-word;color: #fff !important">Worship Night Onsite</h1> 
                                                 <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">Jl. Aruna no. 19</h3> 
                                                 <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">'.$date.', 18.30 WIB</h3> 
                                                 <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">Informasi: - </h3> 
