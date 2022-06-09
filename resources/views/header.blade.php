@@ -10,7 +10,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Onsite Service E-Registration</title>
+    <title>Worship Night Onsite E-Registration</title>
 
     <!-- Icons font CSS-->
     <link href="{{ asset('vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">

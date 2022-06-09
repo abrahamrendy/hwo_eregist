@@ -4,7 +4,7 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Pendaftaran Ibadah Onsite GBI Sukawarna</h2>
+                    <h2 class="title">Pendaftaran Worship Night Onsite GBI Sukawarna</h2>
                 </div>
                 <div class="card-body">
                     <span style="font-weight: 600; font-size: 2.2rem; color: #560100">Mohon maaf,<br>
