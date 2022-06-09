@@ -23,22 +23,19 @@ class IndexController extends Controller
         $service = $request->input('service');
         $pokok_doa = $request->input('pokok_doa');
         $created_at = date('Y-m-d H:i:s', strtotime('now + 7 hours'));
-        $attend_date = date('Y-m-d', strtotime('Sunday', strtotime($created_at)));
-        if ($service == 22 || $service == 20 || $service == 21) {
-            $attend_date = date('Y-m-d', strtotime('Friday', strtotime($created_at)));;
-        }
+        $attend_date = date('Y-m-d', strtotime('Wednesday', strtotime($created_at)));
 
-        $getService = DB::table('service')->where('id', $service)->first();
+        $getService = 800;
 
         $countUser = DB::table('registrant')->where('service',$service)->count();
 
         $existedUser = DB::table('registrant')->join('service', 'registrant.service', '=', 'service.id')->where('registrant.name',$first_name.' '. $last_name)->select('registrant.id as registrant_id', 'registrant.name as registrant_name', 'service.*')->first();
 
-        // if (!empty($existedUser)) {
-        //     return view('fail', ['code' => 0, 'name' => $existedUser->registrant_name,'ibadah' => ($existedUser->name .' '. $existedUser->time), 'data' => $existedUser, 'id' => ($existedUser->registrant_id)]);
-        // }
+        if (!empty($existedUser)) {
+            return view('fail', ['code' => 0, 'name' => $existedUser->registrant_name,'attend_date' => $attend_date, 'data' => $existedUser, 'id' => ($existedUser->registrant_id)]);
+        }
 
-        if ($countUser >= ($getService->qty)) {
+        if ($countUser >= $getService) {
             // USER EXCEEDED CAPACITY
             return view('fail', ['code' => 1]);
         } else {
@@ -57,9 +54,10 @@ class IndexController extends Controller
 
             if ($id) {
                 // SET UP EMAIL
-                $temp_service = DB::table('service')->where('id', $service)->first();
+                // $temp_service = DB::table('service')->where('id', $service)->first();
+                $temp_service = 'Worship Night Onsite';
                 $name = $first_name.' '. $last_name;
-                $this->registEmail($email, $attend_date, $temp_service, $name, $id);
+                // $this->registEmail($email, $attend_date, $temp_service, $name, $id);
                 return view('success', ['data' => $temp_service, 'id' => $id, 'name' => $name, 'attend_date' => $attend_date]);
             } else {
                 // GENERIC ERROR MESSAGE
@@ -71,7 +69,7 @@ class IndexController extends Controller
     }
 
     public function registEmail ($to, $date, $data, $name, $id) {
-        $subject = 'GBI Sukawarna Onsite Service Confirmation';
+        $subject = 'Worship Night Onsite Service Confirmation';
         $htmlBody = '<table width=700px style="background-color:#07121E; padding:40px 40px">';
         $htmlBody .= '<tr>
                         <td> 
@@ -93,9 +91,9 @@ class IndexController extends Controller
                                                 <h1 style="word-break: break-word;color: #fff !important">Terima Kasih, '.$name.'</h1>
                                                 <h3 style="word-break: break-word; font-weight: normal;color: #fff !important">Anda telah terdaftar untuk mengikuti ibadah onsite.</h3>
                                                 <h1 style="word-break: break-word;color: #fff !important">GBI Sukawarna '.$data->name.'</h1> 
-                                                <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">'.$data->address.'</h3> 
-                                                <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">'.$date.', '.$data->time.'</h3> 
-                                                <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">Informasi: '.$data->contact_person.'</h3> 
+                                                <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">Jl. Aruna no. 19</h3> 
+                                                <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">'.$date.', 18.30 WIB</h3> 
+                                                <h3 style="word-break: break-word; font-weight: normal; font-style: italic;color: #fff !important">Informasi: - </h3> 
                                                 <h3 style="word-break: break-word; font-weight: normal;color: #fff !important">Mohon membawa tanda bukti pengenalan diri (KAJ/KTP/SIM) sehingga tim kami dapat mengkonfirmasi kehadiran anda.</h3> 
                                                 </p>
                                             </td>
@@ -118,7 +116,7 @@ class IndexController extends Controller
 
     public function getServices () {
         // $services = DB::table('service')->get();
-        $services = DB::select('SELECT id, name, time, qty, IFNULL(t.ct, 0) as ct FROM service LEFT OUTER JOIN (SELECT service, count(id) as ct FROM `registrant` GROUP BY service) as t ON service.id = t.service WHERE name LIKE "%Aruna%" AND service.status = 1 ORDER BY service.time');
+        $services = DB::select('SELECT id, name, time, qty, IFNULL(t.ct, 0) as ct FROM service LEFT OUTER JOIN (SELECT service, count(id) as ct FROM `registrant` GROUP BY service) as t ON service.id = t.service WHERE service.status = 1 ORDER BY service.id');
 
         return json_encode($services);
     }

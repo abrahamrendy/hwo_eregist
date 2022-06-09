@@ -33,7 +33,7 @@
                             <th>Age</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Service</th>
+                            <th>Asal Gereja</th>
                             <th>Beban Doa</th>
                         </tr>
                       </thead>
@@ -49,7 +49,7 @@
                                     echo "<td>".$item->age."</td>";
                                     echo "<td>".$item->phone."</td>";
                                     echo "<td>".$item->address."</td>";
-                                    echo "<td>".$item->svc_name.' - '.$item->svc_time."</td>";
+                                    echo "<td>".$item->svc_name."</td>";
                                     echo "<td>".$item->pokok_doa."</td>";
                                     $ct++;
                                 }
@@ -65,7 +65,7 @@
                             <th>Age</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Service</th>
+                            <th>Asal Gereja</th>
                             <th>Beban Doa</th>
                         </tr>
                       </tfoot>

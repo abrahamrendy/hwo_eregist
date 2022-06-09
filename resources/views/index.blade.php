@@ -4,7 +4,7 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Pendaftaran Ibadah Onsite GBI Sukawarna</h2>
+                    <h2 class="title">Pendaftaran Worship Night Onsite GBI Sukawarna</h2>
                 </div>
                 <div class="card-body">
                     <?php 
@@ -68,12 +68,12 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Ibadah</div>
+                            <div class="name">Asal Gereja</div>
                             <div class="value">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="service" required id="service">
-                                            <option disabled="disabled" selected="selected">Pilih Ibadah</option>
+                                            <option disabled="disabled" selected="selected">Pilih Gereja</option>
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
@@ -130,41 +130,9 @@
                     success:function(data)
                     {
                         $('#service').text('');
-                        var html = '<option disabled="disabled" selected="selected">Pilih ibadah</option>';
+                        var html = '<option disabled="disabled" selected="selected">Pilih Gereja</option>';
                         $.each(data, function(index, item) {
-                            <?php if ($date < date("Y-m-d H:i:s", strtotime ("This saturday 18.00")) && $dateDay != date("w", strtotime ("sunday"))) { ?>
-                                if (item.id != 12 && item.id != 13 && item.id != 14 && item.id != 18) {
-                                    if (item.ct == item.qty) {
-                                        html += "<option disabled value='"+item.id+"'>"+item.name+ " - " +item.time + " ("+ item.ct+ "/"+ item.qty +" seats)</option>";
-                                    } else {
-                                        html += "<option value='"+item.id+"'>"+item.name+ " - " +item.time + " ("+ item.ct+ "/"+ item.qty +" seats)</option>";
-                                    }
-                                }
-                            <?php } else { ?>
-                                
-                            <?php } ?>
-
-                            // ARUNA 2
-                            <?php if ($date < date("Y-m-d H:i:s", strtotime ("This sunday 08.00"))) { ?>
-                                if (item.id == 12) {
-                                    if (item.ct == item.qty) {
-                                        html += "<option disabled value='"+item.id+"'>"+item.name+ " - " +item.time + " ("+ item.ct+ "/"+ item.qty +" seats)</option>";
-                                    } else {
-                                            html += "<option value='"+item.id+"'>"+item.name+ " - " +item.time + " ("+ item.ct+ "/"+ item.qty +" seats)</option>";
-                                    }   
-                                }
-                            <?php } ?>
-                            
-                            // ARUNA 3-5
-                            <?php if ($date < date("Y-m-d H:i:s", strtotime ("This sunday 12.00"))) { ?>
-                                if (item.id == 13 || item.id == 14 || item.id == 18) {
-                                    if (item.ct == item.qty) {
-                                        html += "<option disabled value='"+item.id+"'>"+item.name+ " - " +item.time + " ("+ item.ct+ "/"+ item.qty +" seats)</option>";
-                                    } else {
-                                            html += "<option value='"+item.id+"'>"+item.name+ " - " +item.time + " ("+ item.ct+ "/"+ item.qty +" seats)</option>";
-                                    }   
-                                }
-                            <?php } ?>
+                            html += "<option value='"+item.id+"'>"+item.name+"</option>";
                         });
                         $('#service').append(html);
                     },
