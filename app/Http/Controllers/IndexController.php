@@ -57,7 +57,7 @@ class IndexController extends Controller
                 // $temp_service = DB::table('service')->where('id', $service)->first();
                 $temp_service = 'Worship Night Onsite';
                 $name = $first_name.' '. $last_name;
-                // $this->registEmail($email, $attend_date, $temp_service, $name, $id);
+                $this->registEmail($email, $attend_date, $temp_service, $name, $id);
                 return view('success', ['data' => $temp_service, 'id' => $id, 'name' => $name, 'attend_date' => $attend_date]);
             } else {
                 // GENERIC ERROR MESSAGE
