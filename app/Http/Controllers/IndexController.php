@@ -25,7 +25,7 @@ class IndexController extends Controller
         $created_at = date('Y-m-d H:i:s', strtotime('now + 7 hours'));
         $attend_date = date('Y-m-d', strtotime('Wednesday', strtotime($created_at)));
 
-        $getService = 800;
+        $getService = 600;
 
         $countUser = DB::table('registrant')->where('service',$service)->count();
 
