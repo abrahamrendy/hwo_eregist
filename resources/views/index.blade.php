@@ -10,9 +10,9 @@
                     <?php 
                         $date = date("Y-m-d H:i:s", strtotime ("+7 hours"));
                         $dateDay = date("w", strtotime ("+7 hours"));
-                        // if (false) {
+                        if (false) {
                         // if ($date < date("Y-m-d H:i:s", strtotime ("This saturday 18.00")) && $dateDay != date("w", strtotime ("sunday"))) {
-                        if ($date < date("Y-m-d H:i:s", strtotime ("This wednesday 12.00"))) {
+                        // if ($date < date("Y-m-d H:i:s", strtotime ("This wednesday 12.00"))) {
                     ?>
                         <form action="{{route('submit_register')}}" method="POST" id="regist-form">
                         @csrf
